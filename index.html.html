@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dunia Cabaran Atlet Cilik | Asas Berlari Tahun 5</title>
+<style>
+:root{--navy:#17366f;--blue:#168eea;--sky:#e8f7ff;--yellow:#ffd447;--pink:#ff648e;--purple:#8155d9;--green:#20ad79;--ink:#183153;--white:#fff}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#dff5ff 0%,#fff 48%,#eaf8ff 100%)}
+button{font:inherit;cursor:pointer;border:0}
+.hero{position:relative;overflow:hidden;padding:34px 18px 42px;text-align:center;color:white;background:linear-gradient(120deg,#087bd0,#35b9e9 55%,#5ed0c2)}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:#ffffff25;width:220px;height:220px;top:-100px}
+.hero:before{left:-50px}.hero:after{right:-60px;top:-80px}
+.sun{position:absolute;right:12%;top:18px;font-size:42px;animation:spin 16s linear infinite}
+.hero h1{position:relative;margin:0;font-size:clamp(30px,6vw,54px);line-height:1.05;text-shadow:3px 4px 0 #174c91;letter-spacing:1px}
+.hero p{position:relative;margin:12px auto 18px;max-width:700px;font-size:clamp(14px,2.4vw,19px);font-weight:700}
+.track{display:flex;justify-content:center;gap:14px;align-items:center;flex-wrap:wrap}
+.runner{font-size:56px;display:inline-block;animation:run 1s ease-in-out infinite alternate}
+.runner:nth-child(2){animation-delay:.3s}
+@keyframes run{from{transform:translateY(2px) rotate(-7deg)}to{transform:translateY(-9px) rotate(7deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.wrap{max-width:1100px;margin:-18px auto 0;padding:0 16px 40px;position:relative}
+.intro{background:#fff;border:3px solid #c5ebff;border-radius:22px;padding:16px 20px;box-shadow:0 7px 0 #b6e2f5;text-align:center;margin-bottom:22px}
+.intro strong{color:#0879c9}
+.game-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.game-card{background:#fff;border-radius:22px;padding:18px;border:3px solid #d6edff;box-shadow:0 7px 0 #c8e4f5;display:flex;flex-direction:column;min-height:260px;transition:.2s}
+.game-card:hover{transform:translateY(-4px)}
+.game-card:nth-child(1){border-color:#ffc9d8}.game-card:nth-child(2){border-color:#c9e9dc}.game-card:nth-child(3){border-color:#d9cdf9}
+.game-icon{font-size:48px;text-align:center;background:#f0f9ff;border-radius:16px;padding:9px}
+.game-card h2{font-size:21px;margin:12px 0 6px;color:var(--navy)}
+.game-card p{font-size:14px;line-height:1.5;margin:0 0 14px;flex:1}
+.pill{display:inline-block;font-size:12px;font-weight:800;padding:6px 10px;border-radius:30px;background:#e7f5ff;color:#126bb0;margin-bottom:10px}
+.primary{background:linear-gradient(90deg,#087ed1,#20b4dc);color:white;font-weight:800;border-radius:13px;padding:12px 16px;box-shadow:0 4px 0 #075c9c;transition:.15s}
+.primary:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.secondary{background:#edf5fb;color:#24486e;border-radius:12px;padding:10px 14px;font-weight:700}
+.panel{display:none;margin-top:24px;background:#fff;border:3px solid #c8eaff;border-radius:24px;padding:clamp(16px,3vw,28px);box-shadow:0 8px 0 #c3e4f5}
+.panel.active{display:block;animation:pop .25s ease-out}
+@keyframes pop{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
+.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;border-bottom:2px dashed #d8eafa;padding-bottom:13px;margin-bottom:18px}
+.panel-head h2{margin:0;color:var(--navy)}
+.score{background:#fff3bf;color:#775300;border-radius:30px;padding:8px 13px;font-weight:900}
+.progress{height:10px;background:#e9f1f8;border-radius:20px;overflow:hidden;margin:12px 0 20px}
+.bar{height:100%;width:0;background:linear-gradient(90deg,#16b981,#75d85e);transition:.3s}
+.question{font-size:20px;font-weight:900;line-height:1.4;margin:12px 0 16px}
+.answers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.answer{padding:14px;border:2px solid #d9eafa;background:#f8fcff;border-radius:14px;text-align:left;font-weight:700;color:#234365}
+.answer:hover{border-color:#168eea;background:#eaf7ff}
+.answer.correct{background:#e2faee;border-color:#1eae72;color:#126b49}.answer.wrong{background:#fff0f1;border-color:#ef7180;color:#9a2b3b}
+.feedback{min-height:28px;font-weight:800;margin:14px 0;color:#14794f}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.match-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.match-col h3{text-align:center;color:#42638b}
+.match-item{display:block;width:100%;padding:13px;margin:8px 0;border:2px solid #d9eafa;border-radius:13px;background:#f8fcff;text-align:left;font-weight:700;color:#244365}
+.match-item.selected{border-color:#168eea;background:#e4f5ff;box-shadow:0 0 0 2px #168eea22}
+.match-item.done{background:#e4f9ed;border-color:#29ae78;color:#146b49}
+.sequence{display:grid;gap:10px}
+.sequence-item{display:flex;align-items:center;gap:10px;padding:12px;border:2px solid #d9eafa;border-radius:14px;background:#f8fcff;font-weight:700}
+.sequence-item .num{background:#dff2ff;color:#126bb0;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none}
+.move{margin-left:auto;display:flex;gap:5px}
+.move button{background:#e2f2ff;color:#155b91;border-radius:8px;padding:7px 10px;font-weight:900}
+.note{background:#fff8d9;border-left:5px solid #ffd447;padding:12px 14px;border-radius:10px;font-size:14px;line-height:1.5;margin-top:16px}
+footer{text-align:center;color:#56728e;font-size:13px;padding:22px 12px}
+.hidden{display:none!important}
+@media(max-width:760px){.game-grid{grid-template-columns:1fr}.game-card{min-height:0}.match-layout{grid-template-columns:1fr}.answers{grid-template-columns:1fr}.hero{padding-bottom:35px}.sun{right:5%}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="sun">☀️</div>
+  <h1>🏅 DUNIA CABARAN<br>ATLET CILIK 🏅</h1>
+  <p>Pendidikan Jasmani Tahun 5 · Olahraga Asas: Asas Berlari</p>
+  <div class="track"><span class="runner">🏃🏻‍♂️</span><span>⭐ JOM BERGERAK, BELAJAR & MENANG! ⭐</span><span class="runner">🏃🏻‍♀️</span></div>
+</header>
+<main class="wrap">
+  <section class="intro">
+    <strong>SELAMAT DATANG, ATLET!</strong><br>
+    Pilih satu permainan. Baca arahan, cuba jawab dan kumpulkan markah. Belajar sambil bergerak dengan ceria!
+  </section>
+  <section class="game-grid">
+    <article class="game-card">
+      <div class="game-icon">🏃🏻‍♂️💨</div><span class="pill">OBJEKTIF 1.9.1</span>
+      <h2>1. Misi Pelari Pantas</h2>
+      <p>Uji pengetahuan tentang larian pecut, kedudukan badan dan teknik asas berlari.</p>
+      <button class="primary" onclick="openGame('quiz')">MULA BERMAIN ▶</button>
+    </article>
+    <article class="game-card">
+      <div class="game-icon">🤝🏻🏃🏻‍♀️</div><span class="pill">OBJEKTIF 1.9.2</span>
+      <h2>2. Cabaran Hantar Baton</h2>
+      <p>Padankan situasi dengan tindakan yang betul semasa pertukaran baton.</p>
+      <button class="primary" onclick="openGame('match')">MULA BERMAIN ▶</button>
+    </article>
+    <article class="game-card">
+      <div class="game-icon">🚧🏃🏻‍♂️</div><span class="pill">OBJEKTIF 1.9.3</span>
+      <h2>3. Juara Larian Berhalangan</h2>
+      <p>Susun langkah larian berirama melepasi halangan mengikut urutan yang sesuai.</p>
+      <button class="primary" onclick="openGame('sequence')">MULA BERMAIN ▶</button>
+    </article>
+  </section>
+
+  <section id="quiz" class="panel">
+    <div class="panel-head"><h2>🏃🏻‍♂️ Misi Pelari Pantas</h2><span class="score" id="quizScore">⭐ Markah: 0</span></div>
+    <div class="progress"><div class="bar" id="quizBar"></div></div>
+    <div id="quizArea"></div>
+    <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+    <div class="actions"><button class="primary hidden" id="quizNext" onclick="nextQuiz()">SOALAN SETERUSNYA →</button><button class="secondary" onclick="closeGames()">Kembali ke menu</button></div>
+  </section>
+
+  <section id="match" class="panel">
+    <div class="panel-head"><h2>🤝🏻 Cabaran Hantar Baton</h2><span class="score" id="matchScore">⭐ Padanan: 0/4</span></div>
+    <p>Pilih satu kad di sebelah kiri, kemudian pilih jawapan yang sepadan di sebelah kanan.</p>
+    <div class="match-layout">
+      <div class="match-col"><h3>Situasi</h3><div id="matchLeft"></div></div>
+      <div class="match-col"><h3>Tindakan yang betul</h3><div id="matchRight"></div></div>
+    </div>
+    <div class="feedback" id="matchFeedback" aria-live="polite"></div>
+    <div class="actions"><button class="primary" onclick="resetMatch()">CUBA LAGI ↻</button><button class="secondary" onclick="closeGames()">Kembali ke menu</button></div>
+    <div class="note">Tip: Dalam larian berganti-ganti, pelari perlu bekerjasama, berkomunikasi dan memastikan baton diserahkan dengan selamat.</div>
+  </section>
+
+  <section id="sequence" class="panel">
+    <div class="panel-head"><h2>🚧 Juara Larian Berhalangan</h2><span class="score" id="seqScore">🎯 Susun langkah</span></div>
+    <p>Gunakan anak panah untuk menyusun langkah daripada mula hingga tamat. Kemudian tekan <b>Semak susunan</b>.</p>
+    <div id="sequenceList" class="sequence"></div>
+    <div class="feedback" id="seqFeedback" aria-live="polite"></div>
+    <div class="actions"><button class="primary" onclick="checkSequence()">SEMAK SUSUNAN ✓</button><button class="secondary" onclick="resetSequence()">SUSUN SEMULA ↻</button><button class="secondary" onclick="closeGames()">Kembali ke menu</button></div>
+    <div class="note">Ingat: berlari secara terkawal, kekalkan irama langkah, pandang ke hadapan dan lepasi halangan dengan selamat.</div>
+  </section>
+</main>
+<footer>🌟 Hebat usaha kamu! Terus berlatih dengan selamat dan yakin. 🌟</footer>
+<script>
+const panels=['quiz','match','sequence'];
+function openGame(id){panels.forEach(p=>document.getElementById(p).classList.toggle('active',p===id));document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'});if(id==='quiz')startQuiz();if(id==='match')resetMatch();if(id==='sequence')resetSequence()}
+function closeGames(){panels.forEach(p=>document.getElementById(p).classList.remove('active'));document.querySelector('.game-grid').scrollIntoView({behavior:'smooth',block:'start'})}
+
+// GAME 1: QUIZ
+const questions=[
+ {q:'Apakah maksud larian pecut?',a:['Berlari pada kelajuan tinggi dalam jarak yang ditetapkan','Berjalan perlahan dalam bulatan','Melompat melepasi palang','Berjalan sambil membawa baton'],c:0,e:'Betul! Larian pecut dilakukan dengan kelajuan tinggi pada jarak yang ditetapkan.'},
+ {q:'Apakah kedudukan badan yang sesuai ketika memecut?',a:['Tegak kaku dan melihat ke belakang','Sedikit condong ke hadapan dan terkawal','Membongkok terlalu rendah','Bersandar ke belakang'],c:1,e:'Tepat! Badan sedikit condong ke hadapan dan kekal seimbang.'},
+ {q:'Apakah fungsi hayunan tangan semasa berlari?',a:['Mengganggu pergerakan kaki','Membantu keseimbangan dan momentum','Memegang lutut','Memperlahankan larian'],c:1,e:'Bagus! Hayunan tangan membantu keseimbangan dan momentum larian.'},
+ {q:'Ke manakah pandangan mata semasa berlari?',a:['Ke hadapan pada laluan','Ke arah kasut','Ke belakang sepanjang masa','Ke atas tanpa melihat laluan'],c:0,e:'Ya! Pandang ke hadapan supaya dapat melihat laluan dan halangan.'},
+ {q:'Apakah perkara penting sebelum melakukan aktiviti larian?',a:['Terus memecut tanpa persediaan','Memakai kasut yang sesuai dan memanaskan badan','Berlari di kawasan licin','Menolak rakan'],c:1,e:'Hebat! Pemanasan badan dan kasut sesuai membantu mengurangkan risiko kecederaan.'}
+];
+let qi=0,qs=0,answered=false;
+function startQuiz(){qi=0;qs=0;document.getElementById('quizScore').textContent='⭐ Markah: 0';renderQuiz()}
+function renderQuiz(){answered=false;let q=questions[qi];document.getElementById('quizBar').style.width=(qi/questions.length*100)+'%';document.getElementById('quizFeedback').textContent='';document.getElementById('quizNext').classList.add('hidden');document.getElementById('quizArea').innerHTML=`<div class="pill">SOALAN ${qi+1} DARIPADA ${questions.length}</div><div class="question">${q.q}</div><div class="answers">${q.a.map((a,i)=>`<button class="answer" onclick="answerQuiz(${i},this)">${String.fromCharCode(65+i)}. ${a}</button>`).join('')}</div>`}
+function answerQuiz(i,el){if(answered)return;answered=true;let q=questions[qi];document.querySelectorAll('#quizArea .answer').forEach((b,j)=>{b.disabled=true;if(j===q.c)b.classList.add('correct')});if(i===q.c){qs++;document.getElementById('quizFeedback').textContent='🌟 '+q.e}else{el.classList.add('wrong');document.getElementById('quizFeedback').textContent='💡 Belum tepat. '+q.e}document.getElementById('quizScore').textContent='⭐ Markah: '+qs;document.getElementById('quizNext').textContent=qi===questions.length-1?'LIHAT KEPUTUSAN 🏆':'SOALAN SETERUSNYA →';document.getElementById('quizNext').classList.remove('hidden')}
+function nextQuiz(){if(qi<questions.length-1){qi++;renderQuiz()}else{document.getElementById('quizBar').style.width='100%';document.getElementById('quizArea').innerHTML=`<div class="question">🏆 Tahniah, atlet cilik!</div><p>Markah kamu ialah <b>${qs} daripada ${questions.length}</b>.</p><p>${qs>=4?'Cemerlang! Kamu semakin mahir tentang asas berlari.':'Teruskan berlatih. Setiap percubaan menjadikan kamu lebih baik!'}</p>`;document.getElementById('quizFeedback').textContent='';document.getElementById('quizNext').classList.add('hidden')}}
+
+// GAME 2: MATCHING
+const pairs=[
+ ['Sebelum menerima baton','Bersedia dan fokus pada isyarat rakan'],
+ ['Semasa pertukaran baton','Hulurkan atau sambut baton dengan kemas'],
+ ['Selepas menerima baton','Pegang baton dengan selamat dan teruskan larian'],
+ ['Semasa berlari bersama pasukan','Berkomunikasi dan bekerjasama']
+];
+let selectedLeft=null,matched=new Set();
+function shuffle(a){return [...a].sort(()=>Math.random()-.5)}
+function resetMatch(){selectedLeft=null;matched=new Set();document.getElementById('matchFeedback').textContent='';document.getElementById('matchScore').textContent='⭐ Padanan: 0/4';let right=shuffle(pairs.map((p,i)=>({text:p[1],id:i})));document.getElementById('matchLeft').innerHTML=pairs.map((p,i)=>`<button class="match-item" id="left${i}" onclick="chooseLeft(${i})">${i+1}. ${p[0]}</button>`).join('');document.getElementById('matchRight').innerHTML=right.map(p=>`<button class="match-item" id="right${p.id}" onclick="chooseRight(${p.id})">${p.text}</button>`).join('')}
+function chooseLeft(i){if(matched.has(i))return;selectedLeft=i;document.querySelectorAll('#matchLeft .match-item').forEach(b=>b.classList.remove('selected'));document.getElementById('left'+i).classList.add('selected');document.getElementById('matchFeedback').textContent='Sekarang pilih tindakan yang sepadan.'}
+function chooseRight(i){if(selectedLeft===null){document.getElementById('matchFeedback').textContent='Pilih situasi di sebelah kiri dahulu.';return}if(matched.has(i))return;if(selectedLeft===i){matched.add(i);document.getElementById('left'+i).classList.add('done');document.getElementById('right'+i).classList.add('done');document.getElementById('left'+i).disabled=true;document.getElementById('right'+i).disabled=true;document.getElementById('matchFeedback').textContent='✅ Padanan betul! Syabas!'}else{document.getElementById('matchFeedback').textContent='❌ Belum tepat. Cuba fikirkan semula.'}selectedLeft=null;document.querySelectorAll('#matchLeft .match-item').forEach(b=>b.classList.remove('selected'));document.getElementById('matchScore').textContent='⭐ Padanan: '+matched.size+'/4';if(matched.size===4)document.getElementById('matchFeedback').textContent='🏆 Hebat! Semua padanan betul. Kamu pemain berpasukan yang cemerlang!'}
+
+// GAME 3: SEQUENCE
+const steps=[
+ 'Berdiri di garisan permulaan dan bersedia untuk berlari.',
+ 'Mulakan larian dengan kelajuan dan irama yang terkawal.',
+ 'Pandang ke hadapan dan laraskan langkah apabila menghampiri halangan.',
+ 'Lepasi halangan dengan gerakan yang selamat tanpa berhenti.',
+ 'Teruskan larian dan kekalkan irama sehingga ke garisan penamat.'
+];
+let order=[];
+function renderSequence(){document.getElementById('sequenceList').innerHTML=order.map((v,i)=>`<div class="sequence-item"><span class="num">${i+1}</span><span>${steps[v]}</span><span class="move"><button aria-label="Naik" onclick="moveStep(${i},-1)" ${i===0?'disabled':''}>↑</button><button aria-label="Turun" onclick="moveStep(${i},1)" ${i===order.length-1?'disabled':''}>↓</button></span></div>`).join('')}
+function resetSequence(){order=[2,0,4,1,3];document.getElementById('seqFeedback').textContent='';document.getElementById('seqScore').textContent='🎯 Susun langkah';renderSequence()}
+function moveStep(i,d){let j=i+d;if(j<0||j>=order.length)return;[order[i],order[j]]=[order[j],order[i]];renderSequence()}
+function checkSequence(){let correct=order.every((v,i)=>v===i);if(correct){document.getElementById('seqFeedback').textContent='🏆 Tahniah! Susunan kamu betul. Kamu sudah bersedia menjadi juara larian berhalangan!';document.getElementById('seqScore').textContent='⭐ Cemerlang!'}else{let count=order.filter((v,i)=>v===i).length;document.getElementById('seqFeedback').textContent=`Kamu berada di landasan yang betul! ${count} daripada 5 langkah berada pada kedudukan tepat. Cuba lagi.`}}
+</script>
+</body>
+</html>
